@@ -1,23 +1,26 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const db = require("./models");
+
+const pesanRouter = require("./router/pesan.router");
 
 const path = require("path");
-
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "view"));
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: false }));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "view"));
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-	res.send("Express + TypeScript Server");
-});
+app.use("/", pesanRouter);
 
-app.listen(port, () => {
-	console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
+db.sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
 });
