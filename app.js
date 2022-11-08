@@ -2,8 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const db = require("./models");
 
-const pesanRouter = require("./router/pesan.router");
-
 const path = require("path");
 
 dotenv.config();
@@ -18,8 +16,6 @@ app.set("views", path.join(__dirname, "view"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.use("/pesan", pesanRouter);
 
 db.sequelize.sync().then(() => {
 	app.listen(port, () => {
