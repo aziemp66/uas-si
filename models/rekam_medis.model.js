@@ -1,4 +1,4 @@
-const AnggotaBpjs = require("./anggota_bpjs");
+const AnggotaBpjs = require("./anggota_bpjs.model");
 
 module.exports = (sequelize, DataTypes) => {
 	const RekamMedis = sequelize.define(
@@ -35,9 +35,5 @@ module.exports = (sequelize, DataTypes) => {
 			freezeTableName: true,
 		}
 	);
-	RekamMedis.hasOne(AnggotaBpjs, {
-		foreignKey: "id_anggota",
-		sourceKey: "id_anggota",
-	});
 	return RekamMedis;
 };

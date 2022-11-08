@@ -1,4 +1,4 @@
-const RekamMedis = require("./rekam_medis");
+const RekamMedis = require("./rekam_medis.model");
 module.exports = (sequelize, DataTypes) => {
 	const AnggotaBpjs = sequelize.define(
 		"anggota_bpjs",
@@ -26,9 +26,5 @@ module.exports = (sequelize, DataTypes) => {
 			freezeTableName: true,
 		}
 	);
-	AnggotaBpjs.belongsTo(RekamMedis, {
-		foreignKey: "id_anggota",
-		targetKey: "id_anggota",
-	});
 	return AnggotaBpjs;
 };
