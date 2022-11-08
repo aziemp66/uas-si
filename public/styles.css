@@ -25,6 +25,36 @@ h2 {
 }
 
 .list > li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.action-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.action-button > button {
+	padding: 0.5rem 1rem;
+	border: 1px solid #000;
+	border-radius: 0.5rem;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.action-button > button.update {
+	background-color: rgb(57, 232, 22);
+}
+
+.action-button > button.delete {
+	background-color: rgba(207, 38, 38, 0.907);
+}
+
+.list > li {
 	margin: 0 auto;
 	padding: 0.5rem 1rem;
 	border: 1px solid #000;
