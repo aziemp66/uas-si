@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/styles.css" />
+		<title>Message Form</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Message Form</title>
-</head>
-
-<body>
-	<% if (!pesan || pesan.length===0) { %>
+	<body>
+		<header>
+			<h1>Form Kirim Pesan</h1>
+		</header>
+		<% if (!pesan || pesan.length===0) { %>
 		<p>Could not find any pesan. You need to first create some!</p>
 		<% } else { %>
-			<ul id="pesan-list">
-				<% for (const value of pesan) { %>
-					<div>
-						<%= value.email_pengirim %>
-					</div>
-					<div>
-						<%= value.isi_pesan %>
-					</div>
-					<div>
-						<%= value.tanggal %>
-					</div>
-					<% } %>
-			</ul>
-			<% } %>
-</body>
 
+		<h2>Pesan Yang Telah Dikirim</h2>
+		<ul class="list">
+			<% for (const value of pesan) { %>
+			<li>
+				<div><%= value.email_pengirim %></div>
+				<div><%= value.isi_pesan %></div>
+				<div><%= value.tanggal %></div>
+			</li>
+			<% } %>
+		</ul>
+		<% } %>
+	</body>
 </html>
