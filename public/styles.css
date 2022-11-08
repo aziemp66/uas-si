@@ -26,4 +26,15 @@ h2 {
 
 .list > li {
 	margin: 0 auto;
+	padding: 0.5rem 1rem;
+	border: 1px solid #000;
+}
+
+form {
+	margin: 3rem auto;
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

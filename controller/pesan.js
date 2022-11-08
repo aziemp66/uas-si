@@ -1,19 +1,15 @@
 const db = require("../models");
 
 const PostPesan = async (req, res) => {
-	const { nama, email, pesan } = req.body;
+	const { email, pesan } = req.body;
 
 	try {
 		const pesanBaru = await db.Pesan.create({
-			nama_pengirim: nama,
 			email_pengirim: email,
 			isi_pesan: pesan,
 		});
 
-		res.json({
-			message: "Pesan berhasil dikirim",
-			data: pesanBaru,
-		});
+		res.redirect("/pesan");
 	} catch (error) {
 		res.json({
 			message: "Pesan gagal dikirim",
@@ -32,10 +28,7 @@ const DeletePesan = async (req, res) => {
 			},
 		});
 
-		res.json({
-			message: "Pesan berhasil dihapus",
-			data: pesanDihapus,
-		});
+		res.redirect("/pesan");
 	} catch (error) {
 		res.json({
 			message: "Pesan gagal dihapus",
@@ -46,12 +39,11 @@ const DeletePesan = async (req, res) => {
 
 const UpdatePesan = async (req, res) => {
 	const { id } = req.params;
-	const { nama, email, pesan } = req.body;
+	const { email, pesan } = req.body;
 
 	try {
 		const pesanDiupdate = await db.Pesan.update(
 			{
-				nama_pengirim: nama,
 				email_pengirim: email,
 				isi_pesan: pesan,
 			},
@@ -62,10 +54,7 @@ const UpdatePesan = async (req, res) => {
 			}
 		);
 
-		res.json({
-			message: "Pesan berhasil diupdate",
-			data: pesanDiupdate,
-		});
+		res.redirect("/pesan");
 	} catch (error) {
 		res.json({
 			message: "Pesan gagal diupdate",
@@ -85,9 +74,18 @@ const GetPesan = async (req, res) => {
 		});
 	}
 
+	const allPesan_dateFormatted = allPesan.map((pesan) => {
+		const tanggalFormatted = pesan.tanggal.toISOString().split("T");
+
+		return {
+			...pesan.dataValues,
+			tanggal: tanggalFormatted[0] + " " + tanggalFormatted[1].split(".")[0],
+		};
+	});
+
 	res.render("pesan", {
 		title: "Pesan",
-		pesan: allPesan,
+		pesan: allPesan_dateFormatted,
 	});
 };
 
