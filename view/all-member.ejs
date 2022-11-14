@@ -20,17 +20,34 @@
 		<table id="table_id" class="display">
     <thead>
         <tr>
+            <th>Id Anggota</th>
             <th>Nama</th>
             <th>Jenis Kelamin</th>
 						<th>Tanggal Lahir</th>
+            <th>Gejala</th>
+            <th>Tindakan</th>
+            <th>Resep Obat</th>
+            <th>Tanggal Rekam</th>
         </tr>
     </thead>
     <tbody>
 			<% for (const value of member) { %> 
         <tr>
+            <td><%= value.id_anggota %> </td>
             <td><%= value.nama %> </td>
 						<td><%= value.jenis_kelamin %> </td>
 						<td><%= value.tanggal_lahir %> </td>
+            <% if (value.RekamMedi) { %> 
+            <td><%= value.RekamMedi.gejala %> </td>
+            <td><%= value.RekamMedi.tindakan %> </td>
+            <td><%= value.RekamMedi.resep_obat %> </td>
+            <td><%= value.tanggal_rekam %> </td>
+            <% } else { %> 
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <% } %> 
         </tr>
         <% } %> 
     </tbody>

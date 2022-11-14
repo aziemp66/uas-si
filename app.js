@@ -20,7 +20,7 @@ app.set("views", path.join(__dirname, "view"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/bpjs", bpjsRouter);
+app.use(bpjsRouter);
 
 relationship();
 
