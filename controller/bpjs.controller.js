@@ -72,7 +72,30 @@ const renderMedicalRecord = async (req, res) => {
 	});
 };
 
+const renderMemberData = async (req, res) => {
+	const { id } = req.params;
+
+	let member;
+	try {
+		member = await db.AnggotaBpjs.findOne({
+			where: {
+				id_anggota: id,
+			},
+		});
+	} catch (error) {
+		res.render("error404");
+	}
+
+	const member_dateFormatted = {
+		...member.dataValues,
+		tanggal_lahir: new Date(member.tanggal_lahir).toLocaleDateString("id-ID"),
+	};
+
+	res.render("member-data", member_dateFormatted);
+};
+
 module.exports = {
 	renderAllMember,
 	renderMedicalRecord,
+	renderMemberData,
 };
