@@ -2,14 +2,19 @@
 </head>
 
 <body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-  <script type="text/javascript">
-    $(document).ready( function () {
-      $('#table_id').DataTable();
-    } );
-</script>	
-
+<h1>Bpjs Member Biodata</h1>
+<div>
+  <p>Id : <%= member.id_anggota %> </p>
+</div>
+<div>
+  <p>Nama : <%= member.nama %> </p>
+</div>
+<div>
+  <p>Jenis Kelamin : <%= member.jenis_kelamin %> </p>
+</div>
+<div>
+  <p>Tanggal Lahir : <%= member.tanggal_lahir %> </p>
+</div>
 </body>
 
 <%- include("includes/footer.ejs") %> 

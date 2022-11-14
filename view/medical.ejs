@@ -1,0 +1,21 @@
+<%- include("includes/head.ejs", {title:"All Member"}) %>
+</head>
+
+<body>
+	<h1><%= nama %>'s Medical Record</h1>
+	<div>
+		<p>Tanggal Rekaman Medis : <%= medic.tanggal_rekam %> </p>
+	</div>
+	<div>
+		<p>Gejala : <%= medic.gejala %> </p>
+	</div>
+	<div>
+		<p>Tindakan : <%= medic.tindakan %> </p>
+	</div>
+	<div>
+		<p>Resep Obat : <%= medic.resep_obat %> </p>
+	</div>
+	
+</body>
+
+<%- include("includes/footer.ejs") %> 

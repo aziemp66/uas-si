@@ -29,6 +29,7 @@ const renderAllMember = async (req, res) => {
 		};
 		return member_dateFormatted;
 	});
+	console.log(members_dateFormatted[0].RekamMedi);
 
 	res.render("all-member", {
 		member: members_dateFormatted,
@@ -37,22 +38,23 @@ const renderAllMember = async (req, res) => {
 
 const renderMedicalRecord = async (req, res) => {
 	const { id } = req.params;
-	let member;
+
+	let medicRecord;
 	try {
-		member = await db.AnggotaBpjs.findOne({
+		medicRecord = await db.RekamMedis.findOne({
 			where: {
-				id_anggota: id,
+				id_rekam_medis: id,
 			},
 		});
 	} catch (error) {
 		res.render("error404");
 	}
 
-	let medicRecord;
+	let member;
 	try {
-		medicRecord = await db.RekamMedis.findOne({
+		member = await db.AnggotaBpjs.findOne({
 			where: {
-				id_anggota: member.id_anggota,
+				id_anggota: medicRecord.id_anggota,
 			},
 		});
 	} catch (error) {
@@ -66,8 +68,8 @@ const renderMedicalRecord = async (req, res) => {
 		),
 	};
 
-	res.render("member", {
-		...medicRecord_dateFormatted,
+	res.render("medical", {
+		medic: medicRecord_dateFormatted,
 		nama: member.nama,
 	});
 };
@@ -91,7 +93,9 @@ const renderMemberData = async (req, res) => {
 		tanggal_lahir: new Date(member.tanggal_lahir).toLocaleDateString("id-ID"),
 	};
 
-	res.render("member-data", member_dateFormatted);
+	res.render("member", {
+		member: member_dateFormatted,
+	});
 };
 
 module.exports = {
