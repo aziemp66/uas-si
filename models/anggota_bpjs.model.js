@@ -27,12 +27,5 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
-	AnggotaBpjs.associate = (models) => {
-		AnggotaBpjs.hasMany(models.RekamMedis, {
-			foreignKey: "id_anggota",
-			as: "rekamMedis",
-		});
-	};
-
 	return AnggotaBpjs;
 };

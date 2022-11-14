@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const db = require("./models");
+const relationship = require("./relationship");
 
 const path = require("path");
 
@@ -20,6 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/bpjs", bpjsRouter);
+
+relationship();
 
 db.sequelize.sync().then(() => {
 	app.listen(port, () => {

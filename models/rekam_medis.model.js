@@ -1,4 +1,4 @@
-const AnggotaBpjs = require("./anggota_bpjs.model");
+const db = require("../models");
 
 module.exports = (sequelize, DataTypes) => {
 	const RekamMedis = sequelize.define(
@@ -35,5 +35,6 @@ module.exports = (sequelize, DataTypes) => {
 			freezeTableName: true,
 		}
 	);
+
 	return RekamMedis;
 };

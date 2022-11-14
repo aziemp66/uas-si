@@ -17,6 +17,25 @@ const renderAllMember = async (req, res) => {
 	});
 };
 
+const renderMember = async (req, res) => {
+	const member = await db.AnggotaBpjs.findOne({
+		where: {
+			id: req.params.id,
+		},
+	});
+
+	const date = new Date(member.tanggal_lahir);
+	const dateFormatted = date.toLocaleDateString("id-ID");
+
+	res.render("member", {
+		member: {
+			...member.dataValues,
+			tanggal_lahir: dateFormatted,
+		},
+	});
+};
+
 module.exports = {
 	renderAllMember,
+	renderMember,
 };
