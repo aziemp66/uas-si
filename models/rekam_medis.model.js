@@ -2,7 +2,7 @@ const AnggotaBpjs = require("./anggota_bpjs.model");
 
 module.exports = (sequelize, DataTypes) => {
 	const RekamMedis = sequelize.define(
-		"rekam_medis",
+		"RekamMedis",
 		{
 			id_rekam_medis: {
 				type: DataTypes.INTEGER,

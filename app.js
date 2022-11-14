@@ -4,6 +4,8 @@ const db = require("./models");
 
 const path = require("path");
 
+const bpjsRouter = require("./router/bpjs.route");
+
 dotenv.config();
 
 const app = express();
@@ -16,6 +18,8 @@ app.set("views", path.join(__dirname, "view"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use("/bpjs", bpjsRouter);
 
 db.sequelize.sync().then(() => {
 	app.listen(port, () => {

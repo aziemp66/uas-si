@@ -1,7 +1,7 @@
 const RekamMedis = require("./rekam_medis.model");
 module.exports = (sequelize, DataTypes) => {
 	const AnggotaBpjs = sequelize.define(
-		"anggota_bpjs",
+		"AnggotaBpjs",
 		{
 			id_anggota: {
 				type: DataTypes.INTEGER,
@@ -26,5 +26,13 @@ module.exports = (sequelize, DataTypes) => {
 			freezeTableName: true,
 		}
 	);
+
+	AnggotaBpjs.associate = (models) => {
+		AnggotaBpjs.hasMany(models.RekamMedis, {
+			foreignKey: "id_anggota",
+			as: "rekamMedis",
+		});
+	};
+
 	return AnggotaBpjs;
 };

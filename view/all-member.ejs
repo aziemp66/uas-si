@@ -2,7 +2,40 @@
 </head>
 
 <body>
-	Hello World
+	<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"> </script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(document).ready( function () {
+      $('#myTable').DataTable();
+    } );
+  </script>
+	<table>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+  <script type="text/javascript">
+    $(document).ready( function () {
+       $('#table_id').DataTable();
+    } );
+  </script>
+		<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Jenis Kelamin</th>
+						<th>Tanggal Lahir</th>
+        </tr>
+    </thead>
+    <tbody>
+			<% for (const value of member) { %> 
+        <tr>
+            <td><%= value.nama %> </td>
+						<td><%= value.jenis_kelamin %> </td>
+						<td><%= value.tanggal_lahir %> </td>
+        </tr>
+        <% } %> 
+    </tbody>
+</table>
+	</table>
 </body>
 
 <%- include("includes/footer.ejs") %> 
