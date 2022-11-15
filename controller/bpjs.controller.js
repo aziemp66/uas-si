@@ -4,9 +4,7 @@ const renderAllMember = async (req, res) => {
 	// get all bpjs member with their medical record data with join on id_anggota
 	let members;
 	try {
-		members = await db.AnggotaBpjs.findAll({
-			include: db.RekamMedis,
-		});
+		members = await db.AnggotaBpjs.findAll();
 	} catch (error) {
 		console.log(error);
 	}
@@ -23,9 +21,6 @@ const renderAllMember = async (req, res) => {
 			tanggal_lahir: member.dataValues.tanggal_lahir
 				.toISOString()
 				.split("T")[0],
-			tanggal_rekam:
-				member.dataValues.RekamMedi &&
-				member.dataValues.RekamMedi.tanggal_rekam.toISOString().split("T")[0],
 		};
 		return member_dateFormatted;
 	});
@@ -74,6 +69,45 @@ const renderMedicalRecord = async (req, res) => {
 	});
 };
 
+const renderMemberMedicalRecord = async (req, res) => {
+	const { id } = req.params;
+
+	let member;
+	try {
+		member = await db.AnggotaBpjs.findOne({
+			where: {
+				id_anggota: id,
+			},
+		});
+	} catch (error) {
+		res.render("error404");
+	}
+
+	let medicRecord;
+	try {
+		medicRecord = await db.RekamMedis.findAll({
+			where: {
+				id_anggota: id,
+			},
+		});
+	} catch (error) {
+		res.render("error404");
+	}
+
+	const medicRecord_dateFormatted = medicRecord.map((medic) => {
+		const medic_dateFormatted = {
+			...medic.dataValues,
+			tanggal_rekam: new Date(medic.tanggal_rekam).toLocaleDateString("id-ID"),
+		};
+		return medic_dateFormatted;
+	});
+
+	res.render("member-medical", {
+		medic: medicRecord_dateFormatted,
+		nama: member.nama,
+	});
+};
+
 const renderMemberData = async (req, res) => {
 	const { id } = req.params;
 
@@ -102,4 +136,5 @@ module.exports = {
 	renderAllMember,
 	renderMedicalRecord,
 	renderMemberData,
+	renderMemberMedicalRecord,
 };

@@ -10,29 +10,30 @@
     } );
   </script>
 	<table>
+		<h1><%= nama %>'s Medical Record</h1>
 		<table id="table_id" class="display">
     <thead>
         <tr>
-            <th>Id Anggota</th>
-            <th>Nama</th>
-            <th>Jenis Kelamin</th>
-						<th>Tanggal Lahir</th>
-            <th>Rekaman Medis</th>
+            <th>Id Rekam Medis</th>
+            <th>Gejala</th>
+            <th>Tindakan</th>
+						<th>Resep Obat</th>
+						<th>Tanggal Rekaman</th>
         </tr>
     </thead>
     <tbody>
-			<% for (const value of member) { %> 
+			<% for (const value of medic) { %> 
         <tr>
-            <td><a href="/member/<%= value.id_anggota %>"><%= value.id_anggota %></a></td>
-            <td><%= value.nama %> </td>
-						<td><%= value.jenis_kelamin %> </td>
-						<td><%= value.tanggal_lahir %> </td>
-            <td><a href="/member-medical/<%= value.id_anggota %> ">Tampilkan Semua Rekaman Medis</a></td>
+            <td><a href="/medical-record/<%= value.id_rekam_medis%>"><%= value.id_rekam_medis%></a></td>
+						<td><%= value.gejala %></td>
+						<td><%= value.tindakan %></td>
+						<td><%= value.resep_obat %></td>
+						<td><%= value.tanggal_rekam %></td>
         </tr>
         <% } %> 
     </tbody>
-</table>
-	</table>
+  </table>
+
 </body>
 
 <%- include("includes/footer.ejs") %> 
